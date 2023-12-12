@@ -14,7 +14,15 @@ document.addEventListener('DOMContentLoaded',function() {
                 throw new Error('Login filed');
             }
 
+            const token = response.headers.get('Authorization');
+            console.log(token);
+
+            if (token) {
+                localStorage.setItem('token',token);
+            }
+
             console.log('Login successful');
+            window.location.href = "../html/index.html";
         })
         .catch(error => {
             console.error('Error', error);

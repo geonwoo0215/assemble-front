@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded",function() {
         .then(response => response.json())
         .then(data => {
             console.log("Registration successful:",data);
+            window.location.href = "../html/login.html";
         })
         .catch(error => {
             console.error("Error during registtration:", error);
