@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     const token = localStorage.getItem("token");
-    console.log(token);
 
     if(!token) {
         window.location.href = "../html/login.html";
@@ -13,12 +12,13 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => {
             if(!response.ok) {
-                throw new Error("Faile")
+                throw new Error("Failed")
             }
+
             return response.json();
         })
         .then(data => {
-            renderPartyPage(data);
+            renderPartyPage(data.data);
         })
         .catch(error => {
             console.error("Error during party data fetch:", error);
@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function renderPartyPage(partyDataList) {
+    console.log("Party Data List:", partyDataList);
     const appContainer = document.getElementById("app");
 
     partyDataList.forEach(partyData => {
