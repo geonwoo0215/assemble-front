@@ -41,6 +41,11 @@ button {
     margin-bottom: 10px;
 }
 
+.party:hover {
+    background-color: #f0f0f0;
+    cursor: pointer; 
+}
+
 /* .party-container {
     overflow-y: auto;
     height: 100vh;

@@ -21,10 +21,9 @@ document.addEventListener("DOMContentLoaded",function() {
             if (!response.ok) {
                 throw new Error("Faile")
             }
-            return response.json
+            return response.json();
         })
         .then(data => {
-            console.log("Registration successful:",data);
             window.location.href = "../html/login.html";
         })
         .catch(error => {

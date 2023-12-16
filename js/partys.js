@@ -36,6 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
   
         partyDataList.forEach(partyData => {
           const partyElement = createPartyElement(partyData);
+          partyElement.addEventListener("click", function () {
+            sessionStorage.setItem(`partyDetails_${partyData.id}`, JSON.stringify(partyData));
+            sessionStorage.setItem("selectPartyId",partyData.id);
+            window.location.href = '../html/partyDetails.html';
+        });
           appContainer.appendChild(partyElement);
         });
       }
