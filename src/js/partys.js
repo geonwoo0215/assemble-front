@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("token");
   
     if (!token) {
-      window.location.href = "../html/login.html";
+      window.location.href = "/src/html/login.html";
     } else {
       function infiniteScroll() {
   
