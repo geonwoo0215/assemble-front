@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
           partyElement.addEventListener("click", function () {
             sessionStorage.setItem(`partyDetails_${partyData.id}`, JSON.stringify(partyData));
             sessionStorage.setItem("selectPartyId",partyData.id);
-            window.location.href = '../html/partyDetails.html';
+            window.location.href = '/src/html/partyDetails.html';
         });
           appContainer.appendChild(partyElement);
         });

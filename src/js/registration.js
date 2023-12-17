@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded",function() {
             return response.json();
         })
         .then(data => {
-            window.location.href = "../html/login.html";
+            window.location.href = "/src/html/login.html";
         })
         .catch(error => {
             console.error("Error during registtration:", error);

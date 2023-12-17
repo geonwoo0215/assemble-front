@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded',function() {
             }
 
             console.log('Login successful');
-            window.location.href = "../index.html";
+            window.location.href = "/src/index.html";
         })
         .catch(error => {
             console.error('Error', error);

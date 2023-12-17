@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
         })
         .then(data => {
-            window.location.href = "../index.html";
+            window.location.href = "/src/html/index.html";
         })
         .catch(error => {
             console.error("Error:", error);
