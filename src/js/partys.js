@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("token");
   
     if (!token) {
-      window.location.href = "/src/html/login.html";
+      window.history.pushState({}, '', '/login');
+      loadPageContent('/src/html/login.html');
     } else {
       function infiniteScroll() {
   
@@ -66,7 +67,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }, 300));
     }
-  
+
+    function loadPageContent(url) {
+      fetch(url)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error("Failed to load content");
+              }
+              return response.text();
+          })
+          .then(content => {
+            document.documentElement.innerHTML = content;
+          })
+          .catch(error => {
+              console.error("Error loading content:", error);
+          });
+    }
 
     function debounce(func, wait) {
       let timeout;
