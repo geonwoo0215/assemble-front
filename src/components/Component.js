@@ -4,14 +4,13 @@ export default class Component {
     constructor(target) {
         this.target = target;
     }
-    setup() {};
+    setup() { }
     template() { return ''; }
-    render () {
+    render() {
         this.target.innerHTML = this.template();
-        this.setEvent();
     }
-    setEvent (){}
-    setState (newState) {
+    setEvent() { }
+    setState(newState) {
         this.state = { ...this.state, ...newState };
         this.render();
     }

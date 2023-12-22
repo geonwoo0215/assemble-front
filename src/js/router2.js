@@ -1,30 +1,42 @@
-import Dashboard from '/src/components/Dashboard.js';
 import LoginForm from '/src/components/LoginForm.js';
+import Party from '/src/components/Party.js';
+import RegisterForm from '/src/components/RegisterForm.js';
 
 
 const routes = {
-    '/': Dashboard,
+    '/': Party,
     '/login': LoginForm,
+    '/members' : RegisterForm
 };
 
+const route = (event) => {
+    event = event || window.event;
+    event.preventDefault();
+    handleLocation(); 
+}
 const isAuthenticated = () => {
     const token = localStorage.getItem("token");
+    
     if(!token){
-        return false;
+        window.history.pushState({}, "", '/login');
+        const routeComponent = routes['/login'] || routes['/404'];
+        const componentInstance = new routeComponent(document.getElementById('app'));
     }
-    return true; // 로그인이 되어 있는 경우
 };
 
 const handleLocation = async () => {
-    const path = isAuthenticated() ? window.location.pathname : '/login';
-
+    const path = window.location.pathname;
+    const token = localStorage.getItem("token");
+    if (path !== '/members') {
+        isAuthenticated();
+    }
+    if(token || path ==='/members'){
     const routeComponent = routes[path] || routes['/404']; 
-
     const componentInstance = new routeComponent(document.getElementById('app'));
-    componentInstance.render();
-    window.history.pushState(null, null, path);
-};
+    }
 
+};
 window.onpopstate = handleLocation;
+window.route = route;
 
 handleLocation();

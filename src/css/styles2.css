@@ -1,0 +1,163 @@
+/* Login Form */
+#login-form {
+    background: #FFFFFF;
+    text-align: center;
+    margin: 80px
+}
+
+/* Login Top Text */
+.login-top-text {
+    margin: 0 auto;
+    font-size: 16px;
+    color: #000000;
+}
+
+/* Input Group */
+.input-group {
+    width: 267px;
+    height: 45px;
+    margin: 0 auto;
+}
+
+/* Input Box */
+.input-box {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+}
+
+/* Login Button */
+#loginButton {
+    width: 267px;
+    height: 45px;
+    margin: 10px auto;
+    background: #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+/* Register Button */
+#registerButton {
+    width: 267px;
+    height: 45px;
+    margin: 0px auto;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #000000;
+}
+
+
+
+/* 회원가입 */
+
+/* 전체 폼 스타일 */
+#registration-form {
+    background: #FFFFFF;
+    text-align: center;
+    margin: 80px
+}
+
+/* 로그인 상단 텍스트 스타일 */
+.registration-top-text {
+    font-size: 16px;
+    color: #000000;
+    margin: 0 auto;
+}
+
+/* 입력 그룹 스타일 */
+.input-group2 {
+    width: 267px;
+    height: auto;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* 입력 박스 스타일 */
+.input-box2 {
+    box-sizing: border-box;
+    width: 100%;
+    height: 45px;
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+/* 회원가입 버튼 스타일 */
+#registerButton2 {
+    width: 267px;
+    height: 45px;
+    background: #000000;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.input-group2 span {
+    color: red;
+    margin-left: 2px; /* 원하는 간격 조절 */
+}
+
+
+/* 모임 조회 */
+
+#party-form {
+    background: #FFFFFF;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.party-top-text {
+    width: 310px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: 'Single Day', cursive;
+}
+
+#searchButton {
+    background: #6E90E7;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.calender-search p {
+    display: inline;
+}
+
+.party-button-group {
+    margin: 0 auto;
+    width: 330px;
+}
+
+.party-button {
+    border: 1px solid #929292;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.title{
+    margin-left: 20px;
+    font-family: 'Single Day', cursive;
+}
+
+.date {
+    margin-left: 20px;
+    color: #929292; 
+    font-size: 14px;
+    font-family: 'Single Day', cursive;
+
+}

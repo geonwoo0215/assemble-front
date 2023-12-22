@@ -2,20 +2,40 @@ import Component from "/src/components/Component.js";
 
 export default class LoginForm extends Component {
 
+    constructor(target) {
+        super(target);
+        this.render();
+        this.setEvent();
+    }
+
     template() {
         return `
-            <div id="login-form">
-                <label for="loginId">아이디:</label>
-                <input type="text" id="loginId">
-                <label for="password">비밀번호:</label>
-                <input type="password" id="password">
+        <div id="login-form">
+
+            <p class="login-top-text">로그인</p>
+
+            <div class="input-group">
+                <label for="loginId"></label>
+                <input type="text" id="loginId" class="input-box" placeholder="아이디">
+        
+                <label for="password"></label>
+                <input type="password" id="password" class="input-box" placeholder="비밀번호">
+            
                 <button id="loginButton">로그인</button>
+
+                <button id="registerButton">회원가입</button>
             </div>
+
+        </div>
         `;
     }
 
     setEvent() {
         this.target.querySelector('#loginButton').addEventListener('click', this.loginUser.bind(this));
+        this.target.querySelector('#registerButton').addEventListener('click', e => {
+            window.history.pushState({},"",'/members');
+            window.route(e);
+        });
     }
 
     async loginUser() {
@@ -49,4 +69,5 @@ export default class LoginForm extends Component {
             console.error('로그인 오류', error);
         }
     }
+
 }
