@@ -138,12 +138,12 @@
     display: inline;
 }
 
-.party-button-group {
+.party-group {
     margin: 0 auto;
     width: 330px;
 }
 
-.party-button {
+.party {
     border: 1px solid #929292;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -161,3 +161,102 @@
     font-family: 'Single Day', cursive;
 
 }
+
+.content {
+    margin-left: 20px;
+    font-family: 'Single Day', cursive;
+
+}
+
+/* 모임 생성 버튼 */
+#createButton {
+    box-sizing: border-box;
+    width: 320px;
+    background: #6EE789;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-family: 'Single Day', cursive;
+    cursor: pointer;
+}
+
+
+/* 모임 생성 */
+
+#party-save-form {
+    background: #FFFFFF;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.party-save-top-text {
+    width: 310px;
+    margin: 0 auto;
+    font-family: 'Single Day', cursive;
+}
+
+.input-group3 {
+    width: 260px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#partySaveButton {
+    box-sizing: border-box;
+    width: 150px;
+    background: #6EE789;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-family: 'Single Day', cursive;
+    cursor: pointer;
+}
+
+.accordion-content {
+    display: none;
+    flex-direction: column;
+}
+
+.accordion-content input[type="textarea"] {
+    height: 100px;
+    width: 100%;
+    white-space: pre-line;
+}
+
+.accordion-content.active {
+    display: block;
+}
+
+
+.accordion-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#party-detail {
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+#party-info {
+    width: 360px;
+    margin: 0 auto;
+}
+
+.party-member-group {
+    width: 320px;
+    margin: 0 auto;
+}
+
+#expenseButton {
+    width: 320px;
+    margin: 0 auto;
+    background: #6EE789;
+    margin-left: 20px;
+    border-radius: 5px;
+    border: 1px solid #929292;
+    cursor: pointer;
+}
+

@@ -21,14 +21,28 @@ export default class Party extends Component {
 
     setEvent() {
         window.addEventListener('scroll', this.debounce(this.handleScroll.bind(this), 300));
+        this.target.querySelector('#createButton').addEventListener('click', e => {
+            window.history.pushState({},"",'/partys');
+            window.route(e);
+        });
+        this.target.addEventListener('click', (e) => {
+            const partyElement = e.target.closest('.party-group');
+            if (partyElement) {
+                const partyId = partyElement.getAttribute('data-party-id');
+                window.history.pushState({}, "", `/partys/${partyId}`)
+                console.log(`Clicked on party with ID: ${partyId}`);
+                window.route(e);
+            }
+        });
     }
+
     preHTML() {
         return `
         <div id="party-form">
 
             <h4 class="party-top-text">Assemble</h4>
 
-            <p class="party-top-text">모임 조회</p>
+            <p class="party-top-text">모임 리스트</p>
 
             <div class="calender-search">
                 <label for="startDate"></label>
@@ -39,6 +53,8 @@ export default class Party extends Component {
 
                 <button id="searchButton">조회하기</button>
             </div>
+
+            <button id="createButton">모임 생성하기</button>
         </div>
         `
     }
@@ -48,15 +64,15 @@ export default class Party extends Component {
         console.log(this.state);
         const html = `
             ${partyList.map(party => `
-            <div class="party-button-group">
-                <div class="party-button">
+            <div class="party-group"  data-party-id="${party.id}">
+                <div class="party">
 
                     <div class="title">
                         <p>${party.name}</p>
                     </div>
 
                     <div class="date">
-                        <p>모임 날짜 : ${party.startDate}</p>
+                        <p>모임 날짜 : ${party.date}</p>
                     </div>
                     
                 </div>
