@@ -21,7 +21,7 @@ export default class Invite extends Component {
             if (response.ok) {
                 const data = await response.json();
                 const partyId = data.data;
-                console.log("모임 조회 성공");
+                console.log(" 조회 성공");
                 await this.createPartyMember(partyId);
                 const componentInstance = new PartyDetail(this.target,partyId);
             } else {
@@ -37,7 +37,7 @@ export default class Invite extends Component {
     async createPartyMember(partyId) {
         const token = localStorage.getItem("token");
         try {
-            const response = await fetch(`http://localhost:8080//partys/${partyId}/partyMembers`, {
+            const response = await fetch(`http://localhost:8080/partys/${partyId}/partyMembers`, {
                 method: 'GET',
                 headers: {
                     "Authorization": `Bearer ${token}`,
