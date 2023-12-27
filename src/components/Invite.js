@@ -21,15 +21,15 @@ export default class Invite extends Component {
             if (response.ok) {
                 const data = await response.json();
                 const partyId = data.data;
-                console.log(" 조회 성공");
+                console.log("초대 코드 인증 성공");
                 await this.createPartyMember(partyId);
                 const componentInstance = new PartyDetail(this.target,partyId);
             } else {
-                console.error('모임 조회 실패');
+                console.error('초대 코드 인증 실패');
                 const componentInstance = new Party(this.target);
             }
         } catch (error) {
-            console.error('모임 조회 오류', error);
+            console.error('초대 코드 인증 오류', error);
             return [];
         }
     }
