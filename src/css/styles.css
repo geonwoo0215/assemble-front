@@ -1,54 +1,269 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    /* display: flex;
-    flex-direction: column; */
-    align-items: center;
-    justify-content: center;
-    /* height: 50vh; */
+.default-form {
+    background: #FFFFFF;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 20px;
 }
 
-/* .login-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0,1);
-} */
-
-form {
-    display: flex;
-    flex-direction: column;
+.top-text-middle {
+    margin: 0 auto;
+    font-size: 16px;
 }
 
-label {
-    margin-bottom: 8px;
+.top-text-left {
+    width: 267px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: 'Single Day', cursive;
 }
 
-input {
-    padding: 8px;
-    margin-bottom: 16px;
+.login-input {
+    width: 267px;
+    height: 45px;
+    margin: 0 auto;
 }
 
-button {
-    padding: 10px;
-    width: 100%;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+.party-input {
+    width: 267px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: 'Single Day', cursive;
+}
+
+.party-name-input {
     margin-bottom: 10px;
 }
 
-.party:hover {
-    background-color: #f0f0f0;
-    cursor: pointer; 
+.register-input {
+    width: 267px;
+    height: 45px;
+    margin: 0 auto;
+    text-align: left;
 }
 
-/* .party-container {
-    overflow-y: auto;
-    height: 100vh;
-  } */
+.register-input span {
+    color: red;
+    margin-left: 2px; /* 원하는 간격 조절 */
+}
 
-  
+.input-box {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    padding: 10px;
+    border-radius: 5px;
+
+    margin-top: 10px;
+}
+
+.party-name-box {
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    width: 130px;
+    margin-top: 20px;
+    font-family: 'Single Day', cursive;
+    text-align: center;
+    margin-left: 101px;
+}
+
+.party-save-calender-box {
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    width: 90px;
+    font-family: 'Single Day', cursive;
+    margin-left: 144px;
+    text-align: right;
+}
+
+.party-content-input {
+    margin-top: 10px;
+}
+
+.party-content-box {
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+    font-family: 'Single Day', cursive;
+}
+
+.calender-box {
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    width: 90px;
+    font-family: 'Single Day', cursive;
+}
+
+.registerput-box {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    padding: 10px;
+    border-radius: 5px;
+
+    margin-bottom: 10px;
+}
+
+.loginButton {
+    width: 267px;
+    height: 45px;
+    margin: 10px auto;
+    background: #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.registerButton {
+    width: 267px;
+    height: 45px;
+    margin: 0px auto;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #000000;
+}
+
+.searchButton {
+    background: #6E90E7;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: 'Single Day', cursive;
+    color: #000000;
+}
+
+.createButton {
+    box-sizing: border-box;
+    width: 267px;
+    background: #6EE789;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-family: 'Single Day', cursive;
+    cursor: pointer;
+}
+
+.calender-search p {
+    display: inline;
+}
+
+.party {
+    margin: 0 auto;
+    width: 276px;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-family: 'Single Day', cursive;
+}
+
+.party p {
+    padding-left: 10px; 
+    align-items: center;
+}
+
+.party-date {
+    color: #929292; 
+    font-size: 14px;
+    font-family: 'Single Day', cursive;
+}
+
+.saveButton {
+    box-sizing: border-box;
+    width: 267px;
+    background: #6EE789;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-family: 'Single Day', cursive;
+    cursor: pointer;
+}
+
+.party-info {
+    width: 267px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: 'Single Day', cursive;
+    
+}
+
+.expense-info {
+    width: 267px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: 'Single Day', cursive;
+}
+
+
+.expenseButton {
+    width: 267px;
+    margin: 0 auto;
+    background: #6EE789;
+    border-radius: 5px;
+    border: 1px solid #929292;
+    cursor: pointer;
+    font-family: 'Single Day', cursive;
+}
+
+.createButton {
+    box-sizing: border-box;
+    width: 267px;
+    background: #6EE789;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-family: 'Single Day', cursive;
+    cursor: pointer;
+}
+
+.expense-input {
+    width: 267px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: 'Single Day', cursive;
+}
+
+.expense-price-input {
+    margin-bottom: 10px;
+}
+
+.expense-price-box {
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    width: 130px;
+    margin-top: 20px;
+    font-family: 'Single Day', cursive;
+    text-align: center;
+    margin-left: 101px;
+}
+
+.expense-content-box {
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+    font-family: 'Single Day', cursive;
+}
+
+.inviteCodeButton {
+    box-sizing: border-box;
+    width: 267px;
+    background: #6EE7E9;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-family: 'Single Day', cursive;
+    cursor: pointer;
+}

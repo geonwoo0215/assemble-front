@@ -1,45 +1,46 @@
+import Login from '/src/components/Login.js';
+import Party from '/src/components/Party.js';
+import Register from '/src/components/Register.js';
+import PartySave from '/src/components/PartySave.js';
+import PartyDetail from '/src/components/PartyDetail.js';
+import Expense from '/src/components/Expense.js';
+
+
 const routes = {
-    404: {
-        template: "/src/html/404.html",
-        title: "404",
-    },
-    "/": {
-        template: "/index.html",
-        title: "Assemble",
-    },
-    "/login": {
-        template: "/src/html/login.html",
-        title: "로그인 | Assemble",
-    }
+    '/': Party,
+    '/login': Login,
+    '/members' : Register,
+    '/partys' : PartySave,
+    '/partys/detail' : PartyDetail,
+    '/partys/detail/expense' : Expense
 };
 
-const checkLoginAndNavigate = async () => {
-    const token = localStorage.getItem("token");
-    if (token) {
-        await handleLocation();
-    } else {
-        window.history.pushState({}, "", "/login");
-        await handleLocation("/login");
-    }
-};
-
-const route = async(event) => {
+const route = (event) => {
     event = event || window.event;
     event.preventDefault();
-    window.history.pushState({}, "", event.target.href);
-    handleLocation();
+    handleLocation(); 
+}
+const isAuthenticated = () => {
+    const token = localStorage.getItem("token");
+    
+    if(!token){
+        window.history.pushState({}, "", '/login');
+        const routeComponent = routes['/login'] || routes['/404'];
+        const componentInstance = new routeComponent(document.getElementById('app'));
+    }
 };
 
 const handleLocation = async () => {
     const path = window.location.pathname;
-    const routeInfo = routes[path] || routes[404];
-    const html = await fetch(routeInfo.template).then((response) => response.text());
-    document.getElementById("app").innerHTML = html;
-    document.title = routeInfo.title;
-};
+    isAuthenticated();
+    const token = localStorage.getItem("token");
+    if(token) {
+        const routeComponent = routes[path] || routes['/404'];
+        const componentInstance = new routeComponent(document.getElementById('app'));
 
+    }
+};
 window.onpopstate = handleLocation;
 window.route = route;
-handleLocation();
 
-checkLoginAndNavigate();
+handleLocation();

@@ -1,14 +1,24 @@
 import Component from "/src/components/Component.js";
+import PartySave from "/src/components/PartySave.js";
+import PartyDetail from "/src/components/PartyDetail.js"
 
 export default class Party extends Component {
 
     page = 0;
     size = 10;
-
+    static instance;
     constructor(target){
+        if (Party.instance) {
+            Party.instance.setup();
+            Party.instance.setEvent();
+            return Party.instance;
+        }
+
         super(target);
         this.setup();
         this.setEvent();
+
+        Party.instance = this;
     }
 
     preRender() {
@@ -21,40 +31,38 @@ export default class Party extends Component {
 
     setEvent() {
         window.addEventListener('scroll', this.debounce(this.handleScroll.bind(this), 300));
-        this.target.querySelector('#createButton').addEventListener('click', e => {
+        this.target.querySelector('.createButton').addEventListener('click', () => {
             window.history.pushState({},"",'/partys');
-            window.route(e);
+            const componentInstance = new PartySave(this.target);
         });
         this.target.addEventListener('click', (e) => {
-            const partyElement = e.target.closest('.party-group');
+            const partyElement = e.target.closest('.party');
             if (partyElement) {
-                const partyId = partyElement.getAttribute('data-party-id');
-                window.history.pushState({}, "", `/partys/${partyId}`)
-                console.log(`Clicked on party with ID: ${partyId}`);
-                window.route(e);
+                const partyId = partyElement.getAttribute('party-id');
+                window.history.pushState({ partyId }, "", '/partys/detail');
+                const componentInstance = new PartyDetail(this.target,partyId);
             }
         });
     }
 
     preHTML() {
         return `
-        <div id="party-form">
+        <div class="default-form">
 
-            <h4 class="party-top-text">Assemble</h4>
-
-            <p class="party-top-text">모임 리스트</p>
+            <p class="top-text-left">Assemble</p>
+            <p class="top-text-left">모임 리스트</p>
 
             <div class="calender-search">
                 <label for="startDate"></label>
-                <input type="date" id="startDate"  placeholder="연도-월-일">
+                <input type="date" id="startDate" class="calender-box" placeholder="연도-월-일">
                 <p>-</p>
                 <label for="endDate"></label>
-                <input type="date" id="endDate"  placeholder="연도-월-일">
+                <input type="date" id="endDate" class="calender-box" placeholder="연도-월-일">
 
-                <button id="searchButton">조회하기</button>
+                <button class="searchButton">조회하기</button>
             </div>
 
-            <button id="createButton">모임 생성하기</button>
+            <button class="createButton">모임 생성하기</button>
         </div>
         `
     }
@@ -64,18 +72,10 @@ export default class Party extends Component {
         console.log(this.state);
         const html = `
             ${partyList.map(party => `
-            <div class="party-group"  data-party-id="${party.id}">
-                <div class="party">
+            <div class="party"  party-id="${party.id}">
+                    <p>${party.name}</p>
 
-                    <div class="title">
-                        <p>${party.name}</p>
-                    </div>
-
-                    <div class="date">
-                        <p>모임 날짜 : ${party.date}</p>
-                    </div>
-                    
-                </div>
+                    <p>모임 날짜 : ${party.eventDate}</p>
             </div>
         `).join('')}
         `
@@ -101,7 +101,6 @@ export default class Party extends Component {
             if (response.ok) {
                 const data = await response.json();
                 const partyList = data.data;
-                console.log(partyList);
                 console.log("모임 조회 성공");
                 this.page++;
                 return {partyList};

@@ -1,4 +1,5 @@
 import Component from "/src/components/Component.js";
+import Regiter from "/src/components/Register.js";
 
 export default class LoginForm extends Component {
 
@@ -10,31 +11,27 @@ export default class LoginForm extends Component {
 
     template() {
         return `
-        <div id="login-form">
-
-            <p class="login-top-text">로그인</p>
-
-            <div class="input-group">
+        <div class ="default-form">
+            <p class="top-text-middle">로그인</p>
+            <div class="login-input">
                 <label for="loginId"></label>
                 <input type="text" id="loginId" class="input-box" placeholder="아이디">
         
                 <label for="password"></label>
                 <input type="password" id="password" class="input-box" placeholder="비밀번호">
             
-                <button id="loginButton">로그인</button>
-
-                <button id="registerButton">회원가입</button>
+                <button class="loginButton">로그인</button>
+                <button class="registerButton">회원가입</button>
             </div>
-
         </div>
         `;
     }
 
     setEvent() {
-        this.target.querySelector('#loginButton').addEventListener('click', this.loginUser.bind(this));
-        this.target.querySelector('#registerButton').addEventListener('click', e => {
+        this.target.querySelector('.loginButton').addEventListener('click', this.loginUser.bind(this));
+        this.target.querySelector('.registerButton').addEventListener('click', () => {
             window.history.pushState({},"",'/members');
-            window.route(e);
+            const componentInstance = new Regiter(this.target);
         });
     }
 
