@@ -14,7 +14,7 @@ const routes = {
     '/partys' : PartySave,
     '/partys/detail' : PartyDetail,
     '/partys/detail/expense' : Expense,
-    '/:inviteCode' : Invite,
+    '/invite/:inviteCode' : Invite,
 };
 
 const route = (event) => {
@@ -37,9 +37,17 @@ const handleLocation = async () => {
     isAuthenticated();
     const token = localStorage.getItem("token");
     if(token) {
-        const routeComponent = routes[path] || routes['/404'];
-        const componentInstance = new routeComponent(document.getElementById('app'));
-
+        const isInvitePath = path.startsWith('/invite/');
+        
+        if (isInvitePath) {
+            const inviteCode = path.replace('/invite/', '');
+            
+            const routeComponent = routes['/invite/:inviteCode'] || routes['/404'];
+            const componentInstance = new routeComponent(document.getElementById('app'), { inviteCode });
+        } else {
+            const routeComponent = routes[path] || routes['/404'];
+            const componentInstance = new routeComponent(document.getElementById('app'));
+        }
     }
 };
 window.onpopstate = handleLocation;

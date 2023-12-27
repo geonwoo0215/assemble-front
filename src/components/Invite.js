@@ -2,17 +2,16 @@ import Component from "/src/components/Component.js";
 
 export default class Invite extends Component {
 
-
-    constructor(target){
+    constructor(target, inviteCode){
         super(target);
-        this.validateInviteCode();
+        this.validateInviteCode(inviteCode);
         
     }
 
-    async validateInviteCode() {
+    async validateInviteCode(inviteCode) {
         const token = localStorage.getItem("token");
         try {
-            const response = await fetch(`http://localhost:8080/{inviteCode}`, {
+            const response = await fetch(`http://localhost:8080/${inviteCode}`, {
                 method: 'GET',
                 headers: {
                     "Authorization": `Bearer ${token}`,
