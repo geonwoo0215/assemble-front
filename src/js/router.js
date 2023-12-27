@@ -4,6 +4,7 @@ import Register from '/src/components/Register.js';
 import PartySave from '/src/components/PartySave.js';
 import PartyDetail from '/src/components/PartyDetail.js';
 import Expense from '/src/components/Expense.js';
+import Invite from '/src/components/Invite.js';
 
 
 const routes = {
@@ -12,7 +13,8 @@ const routes = {
     '/members' : Register,
     '/partys' : PartySave,
     '/partys/detail' : PartyDetail,
-    '/partys/detail/expense' : Expense
+    '/partys/detail/expense' : Expense,
+    '/:inviteCode' : Invite,
 };
 
 const route = (event) => {

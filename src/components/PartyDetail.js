@@ -10,7 +10,7 @@ export default class PartyDetail extends Component {
     constructor(target, partyId){
         if (PartyDetail.instance) {
             PartyDetail.instance.setup();
-            return PartyDetail.instance;
+                        return PartyDetail.instance;
         }
         super(target);
         this.partyId = partyId;

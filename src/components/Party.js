@@ -15,6 +15,7 @@ export default class Party extends Component {
         }
 
         super(target);
+        this.preSetEvent()
         this.setup();
         this.setEvent();
 
@@ -35,6 +36,10 @@ export default class Party extends Component {
             window.history.pushState({},"",'/partys');
             const componentInstance = new PartySave(this.target);
         });
+        
+    }
+
+    preSetEvent() {
         this.target.addEventListener('click', (e) => {
             const partyElement = e.target.closest('.party');
             if (partyElement) {
