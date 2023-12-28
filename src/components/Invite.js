@@ -40,7 +40,7 @@ export default class Invite extends Component {
         const token = localStorage.getItem("token");
         try {
             const response = await fetch(`http://localhost:8080/partys/${partyId}/partyMembers`, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     "Authorization": `Bearer ${token}`,
                 }
