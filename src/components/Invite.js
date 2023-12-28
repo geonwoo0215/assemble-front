@@ -9,6 +9,7 @@ export default class Invite extends Component {
     }
 
     async validateInviteCode(inviteCode) {
+        console.log(inviteCode);
         const token = localStorage.getItem("token");
         try {
             const response = await fetch(`http://localhost:8080/invite/${inviteCode}`, {
