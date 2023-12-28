@@ -11,7 +11,7 @@ export default class Invite extends Component {
     async validateInviteCode(inviteCode) {
         const token = localStorage.getItem("token");
         try {
-            const response = await fetch(`http://localhost:8080/${inviteCode}`, {
+            const response = await fetch(`http://localhost:8080/invite/${inviteCode}`, {
                 method: 'GET',
                 headers: {
                     "Authorization": `Bearer ${token}`,
