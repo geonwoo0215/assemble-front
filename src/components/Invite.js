@@ -1,4 +1,6 @@
 import Component from "/src/components/Component.js";
+import Party from '/src/components/Party.js';
+import PartyDetail from '/src/components/PartyDetail.js';
 
 export default class Invite extends Component {
 
@@ -9,7 +11,6 @@ export default class Invite extends Component {
     }
 
     async validateInviteCode(inviteCode) {
-        console.log(inviteCode);
         const token = localStorage.getItem("token");
         try {
             const response = await fetch(`http://localhost:8080/invite/${inviteCode}`, {
