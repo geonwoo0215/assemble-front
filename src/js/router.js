@@ -43,7 +43,7 @@ const handleLocation = async () => {
             const inviteCode = path.replace('/invite/', '');
             
             const routeComponent = routes['/invite/:inviteCode'] || routes['/404'];
-            const componentInstance = new routeComponent(document.getElementById('app'), { inviteCode });
+            const componentInstance = new routeComponent(document.getElementById('app'), inviteCode );
         } else {
             const routeComponent = routes[path] || routes['/404'];
             const componentInstance = new routeComponent(document.getElementById('app'));
