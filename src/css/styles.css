@@ -197,10 +197,14 @@
     
 }
 
-.expense-info {
-    width: 267px;
+.expense {
     margin: 0 auto;
+    width: 276px;
+    border: 1px solid #929292;
     text-align: left;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding-left: 10px; 
     font-family: 'Single Day', cursive;
 }
 
@@ -266,4 +270,87 @@
     margin-bottom: 10px;
     font-family: 'Single Day', cursive;
     cursor: pointer;
+}
+
+.expense-info {
+    width: 267px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: 'Single Day', cursive; 
+}
+
+.expense-payerName p {
+    display: inline;
+}
+
+.payerName{
+    padding-left: 172px;
+}
+
+.expense-price p {
+    display: inline;
+}
+
+.expense-price {
+    margin-top: 10px;
+}
+
+.payerName{
+    padding-left: 172px;
+}
+
+.price{
+    padding-left: 150px;
+}
+
+.expense-member-list{
+    margin-top: 10px;
+}
+
+.expense-individual-price p {
+    display: inline;
+}
+
+.individualPrice{
+    padding-left: 165px;
+}
+
+.expense-individual-price {
+    margin-top: 10px;
+}
+
+.expense-comment-box {
+    background: #FFFFFF;
+    border: 1px solid #B2B2B2;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+    font-family: 'Single Day', cursive;
+}
+
+.replyButton {
+    box-sizing: border-box;
+    width: 60px;
+    background: #FFFFFF;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    font-family: 'Single Day', cursive;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 5px; 
+}
+
+.replySaveButton, .cancelButton {
+    box-sizing: border-box;
+    width: 60px;
+    background: #FFFFFF;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    font-family: 'Single Day', cursive;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.expense-comment-list p {
+    margin-left: calc(var(--depth) * 10px);
 }

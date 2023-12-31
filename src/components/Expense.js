@@ -1,11 +1,13 @@
+import ExpenseDetail from "/src/components/ExpenseDetail.js";
 import Component from "/src/components/Component.js";
 import ExpenseSave from "/src/components/ExpenseSave.js";
 
 export default class Expense extends Component {
 
     partyId;
+    partyMemberId;
     static instance;
-    constructor(target, partyId){
+    constructor(target, partyId, partyMemberId){
 
         if (Expense.instance) {
             Expense.instance.setup();
@@ -14,7 +16,9 @@ export default class Expense extends Component {
 
         super(target);
         this.partyId = partyId;
+        this.partyMemberId = partyMemberId;
         this.setup();
+        this.preSetEvent()
         Expense.instance = this;
     }
 
@@ -23,6 +27,7 @@ export default class Expense extends Component {
         this.render();
         this.setEvent();
     }
+
 
     template() {
         const { expenseList } = this.state;
@@ -35,9 +40,9 @@ export default class Expense extends Component {
             <button class="createButton">비용 생성하기</button>
 
             ${expenseList.map(expense => `
-            <div class="expense-info">
+            <div class="expense" expense-id="${expense.id}">
                 <p>${expense.content}</p>
-                <p>${expense.price}</p>
+                <p>${expense.price}원</p>
             </div>
             `).join('')}
 
@@ -49,6 +54,19 @@ export default class Expense extends Component {
         this.target.querySelector('.createButton').addEventListener('click', () => {
             window.history.pushState({},"",'/expense');
             const componentInstance = new ExpenseSave(this.target,this.partyId);
+        });
+    }
+
+    preSetEvent() {
+        const partyId = this.partyId;
+        const partyMemberId = this.partyMemberId;
+        this.target.addEventListener('click', (e) => {
+            const partyElement = e.target.closest('.expense');
+            if (partyElement) {
+                const expenseId = partyElement.getAttribute('expense-id');
+                window.history.pushState({}, "", '/expense/detail');
+                const componentInstance = new ExpenseDetail(this.target,partyId,expenseId,partyMemberId);
+            }
         });
     }
 

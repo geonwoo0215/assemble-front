@@ -44,6 +44,7 @@ export default class ExpenseSave extends Component {
                     <div>
                         <p class="top-text-left">결제자</p>
                         <p>${partyMembers.currentMemberNickname}</p>
+                        <input type="hidden" id="currentMemberPartyMemberId" value="${partyMembers.currentMemberPartyMemberId}">
                     </div>
                     <p class="top-text-left">참여 인원</p>
                         ${partyMembers.partyMemberDTOList.map(partyMember => `
@@ -70,7 +71,7 @@ export default class ExpenseSave extends Component {
 
     setEvent() {
         this.target.querySelector('#expense').addEventListener('input',this.validateInput);
-
+        this.target.querySelector('.saveButton').addEventListener('click',this.saveExpense.bind(this));
     }
 
     validateInput() {
@@ -83,17 +84,22 @@ export default class ExpenseSave extends Component {
         }
     }
 
-    async savExpense() {
-        const token = localStorage.getItem("token");
+    async saveExpense() {
         const partyId = this.partyId;
-        const name = this.target.querySelector('#title').value;
-        const date = this.target.querySelector('#date').value;
-        const content = this.target.querySelector('#content').value;
+        const token = localStorage.getItem("token");
 
+        const expensePrice = document.getElementById('expense').value;
+        const expenseContent = document.getElementById('content').value;
+
+        const selectedPartyMembers = document.querySelectorAll('input[name="selectedPartyMember"]:checked');
+        const partyMemberIds = Array.from(selectedPartyMembers).map(checkbox => checkbox.value);
+        const payerPartyMemberId = document.getElementById('currentMemberPartyMemberId').value;
+        
         const expenseSaveDTO = {
-            name: name,
-            date: date,
-            content: content
+            payerPartyMemberId : payerPartyMemberId,
+            price : parseInt(expensePrice),
+            content : expenseContent,
+            partyMemberIds :partyMemberIds
         };
         
         try {
@@ -107,13 +113,13 @@ export default class ExpenseSave extends Component {
             });
 
             if (response.ok) {
-                console.log('회원가입 성공');
+                console.log('비용 저장 성공');
                 window.history.back();
             } else {
-                console.error('회원가입 실패');
+                console.error('비용 저장 실패');
             }
         } catch (error) {
-            console.error('회원가입 오류', error);
+            console.error('비용 저장 오류', error);
         }
     }
 

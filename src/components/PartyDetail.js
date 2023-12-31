@@ -4,6 +4,7 @@ import Expense from "/src/components/Expense.js";
 export default class PartyDetail extends Component {
 
     partyId;
+    partyMemberId;
     partyMembers;
     invieCode;
     static instance;
@@ -51,7 +52,7 @@ export default class PartyDetail extends Component {
     setEvent() {
         this.target.querySelector('.expenseButton').addEventListener('click', () => {
             window.history.pushState({},"",'/partys/detail/expense');
-            const componentInstance = new Expense(this.target,this.partyId);
+            const componentInstance = new Expense(this.target,this.partyId, this.partyMemberId);
         })
 
         this.target.querySelector('.inviteCodeButton').addEventListener('click', this.invieCode = this.createInviteCode.bind(this))
@@ -104,6 +105,7 @@ export default class PartyDetail extends Component {
             if (response.ok) {
                 const data = await response.json();
                 const partyMembers = data.data;
+                this.partyMemberId = partyMembers.currentMemberPartyMemberId
                 console.log(partyMembers);
                 console.log("모임원 조회 성공");
                 return {partyMembers};
