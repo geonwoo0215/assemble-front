@@ -354,3 +354,34 @@
 .expense-comment-list p {
     margin-left: calc(var(--depth) * 10px);
 }
+
+.file-box .file-name {
+    display: inline-block;
+    width: 203px;
+    background: #FFFFFF;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    font-family: 'Single Day', cursive;
+    text-align: center;
+    font-size: 13px;
+}
+
+.file-box label {
+    display: inline-block;
+    background: #dddddd;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    font-family: 'Single Day', cursive;
+    cursor: pointer;
+    text-align: center;
+    font-size: 13px;
+}
+
+.file-box input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}

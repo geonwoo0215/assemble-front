@@ -61,6 +61,14 @@ export default class ExpenseSave extends Component {
                     <textarea id="content" class="expense-content-box"></textarea>
                 </div>
                 
+
+                <div class="file-box">
+                    <input class="file-name" placeholder="첨부파일" readonly>
+                    <label for="file">파일찾기</label> 
+                    <input type="file" id="file" multiple>
+                </div>
+
+
             </div>
             <button class="saveButton">비용 생성하기</button>
 
@@ -72,7 +80,28 @@ export default class ExpenseSave extends Component {
     setEvent() {
         this.target.querySelector('#expense').addEventListener('input',this.validateInput);
         this.target.querySelector('.saveButton').addEventListener('click',this.saveExpense.bind(this));
+        this.target.querySelector('#file').addEventListener('change', this.displayFileName.bind(this));
     }
+
+    displayFileName() {
+        const fileInput = document.getElementById('file');
+        const fileNameInput = document.querySelector('.file-name');
+
+        if (fileInput.files.length > 0) {
+            const totalFiles = fileInput.files.length;
+            const firstFileName = fileInput.files[0].name;
+
+            if (totalFiles === 1) {
+                fileNameInput.value = `${firstFileName}`;
+            } else {
+                const remainingFiles = totalFiles - 1;
+                fileNameInput.value = `${firstFileName} 외 ${remainingFiles}개`;
+            }
+        } else {
+            fileNameInput.value = '';
+        }
+    }
+
 
     validateInput() {
         const expenseInput = document.getElementById("expense");
@@ -85,6 +114,7 @@ export default class ExpenseSave extends Component {
     }
 
     async saveExpense() {
+        
         const partyId = this.partyId;
         const token = localStorage.getItem("token");
 
@@ -95,13 +125,16 @@ export default class ExpenseSave extends Component {
         const partyMemberIds = Array.from(selectedPartyMembers).map(checkbox => checkbox.value);
         const payerPartyMemberId = document.getElementById('currentMemberPartyMemberId').value;
         
+        const uploadUrlList = await this.saveImage()
+
         const expenseSaveDTO = {
             payerPartyMemberId : payerPartyMemberId,
             price : parseInt(expensePrice),
             content : expenseContent,
-            partyMemberIds :partyMemberIds
+            partyMemberIds :partyMemberIds,
+            imageUrls : uploadUrlList
         };
-        
+
         try {
             const response = await fetch(`http://localhost:8080/partys/${partyId}/expense` , {
                 method: 'POST',
@@ -120,6 +153,43 @@ export default class ExpenseSave extends Component {
             }
         } catch (error) {
             console.error('비용 저장 오류', error);
+        }
+    }
+
+    async saveImage() {
+        const fileInput = document.getElementById('file');
+        
+        if (fileInput.files.length === 0) {
+            console.error('이미지가 선택되지 않았습니다.');
+            return;
+        }
+    
+        const token = localStorage.getItem("token");
+        const formData = new FormData();
+    
+        for (const file of fileInput.files) {
+            formData.append('multipartFiles', file);
+        }
+    
+        try {
+            const response = await fetch(`http://localhost:8080/file/multiparty-files`, {
+                method: 'POST',
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: formData,
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                const uploadUrlList = data.data;
+                console.log('이미지 저장 성공');
+                return uploadUrlList;
+            } else {
+                console.error('이미지 저장 실패');
+            }
+        } catch (error) {
+            console.error('이미지 저장 오류', error);
         }
     }
 
