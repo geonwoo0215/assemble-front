@@ -54,6 +54,15 @@ export default class ExpenseDetail extends Component {
                     `).join('')}
                 </div>
                 
+                <div class="expense-image">
+                    <p class="top-text-left">첨부 사진</p>
+                    ${expense.imageUrls.map(objectKey => `
+                    <a href="https://assemble-image-bucket.s3.ap-northeast-2.amazonaws.com/${objectKey}" target="_blank">
+                        <img src="https://assemble-image-bucket.s3.ap-northeast-2.amazonaws.com/${objectKey}">
+                    </a>
+                    `).join('')}
+                </div>
+
                 <div class="expense-comment-list">
                     <p class="top-text-left">댓글</p>
                     ${commentList.map(comment => `
@@ -73,7 +82,7 @@ export default class ExpenseDetail extends Component {
         `;
     }
 
-     setEvent() {
+    setEvent() {
         this.target.querySelector('.saveButton').addEventListener('click', () => {
             this.saveComment(0);
             this.setup();
@@ -163,7 +172,7 @@ export default class ExpenseDetail extends Component {
         const expenseId = this.expenseId;
 
         const partyMemberId = this.partyMemberId;
-        
+
         const commentValue = this.target.querySelector(`#comment${commentId}`).value;
         if (commentValue === null || commentValue.trim() === '') {
             alert('댓글 내용을 입력해주세요.');

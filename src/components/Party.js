@@ -29,10 +29,10 @@ export default class Party extends Component {
     }
 
     setEvent() {
-        window.addEventListener('scroll', this.debounce(this.handleScroll.bind(this), 300));
-        //this.target.addEventListener('scroll', this.debounce(this.handleScroll.bind(this), 300));
+        //window.addEventListener('scroll', this.debounce(this.handleScroll.bind(this), 300));
         this.target.querySelector('.createButton').addEventListener('click', () => {
             window.history.pushState({},"",'/partys');
+            window.removeEventListener('scroll', this.debounce(this.handleScroll.bind(this), 300));
             const componentInstance = new PartySave(this.target);
         });
         
@@ -41,10 +41,12 @@ export default class Party extends Component {
     preSetEvent() {
 
         this.target.addEventListener('click', (e) => {
+            window.removeEventListener('scroll', this.debounce(this.handleScroll.bind(this), 300));
             const partyElement = e.target.closest('.party');
             if (partyElement) {
                 const partyId = partyElement.getAttribute('party-id');
                 window.history.pushState({ partyId }, "", '/partys/detail');
+                
                 const componentInstance = new PartyDetail(this.target,partyId);
             }
         });

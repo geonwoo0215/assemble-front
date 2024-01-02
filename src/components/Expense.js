@@ -85,14 +85,14 @@ export default class Expense extends Component {
                 const data = await response.json();
                 const expenseList = data.data;
                 console.log(expenseList);
-                console.log("모임 조회 성공");
+                console.log("비용 리스트 조회 성공");
                 return {expenseList};
             } else {
-                console.error('모임 조회 실패');
+                console.error('비용 리스트 조회 실패');
                 return [];
             }
         } catch (error) {
-            console.error('모임 조회 오류', error);
+            console.error('비용 리스트 조회 오류', error);
             return [];
         }
     }

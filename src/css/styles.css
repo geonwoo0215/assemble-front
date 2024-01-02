@@ -385,3 +385,14 @@
     overflow: hidden;
     border: 0;
 }
+
+.expense-image img {
+    width: 50px; 
+    height: 50px; 
+}
+
+.expense-image {
+    margin-top: 10px;
+}
+
+

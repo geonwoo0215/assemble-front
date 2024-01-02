@@ -43,6 +43,15 @@ export default class PartyDetail extends Component {
                     `).join('')}
                 </div>
                 
+                <div class="expense-image">
+                    <p class="top-text-left">첨부 사진</p>
+                    ${party.imageUrls.map(objectKey => `
+                    <a href="https://assemble-image-bucket.s3.ap-northeast-2.amazonaws.com/${objectKey}" target="_blank">
+                        <img src="https://assemble-image-bucket.s3.ap-northeast-2.amazonaws.com/${objectKey}">
+                    </a>
+                    `).join('')}
+                </div>
+
                 <button class="expenseButton">결제내역 보기</button>
             </div>
         </div>
